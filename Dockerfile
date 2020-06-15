@@ -1,8 +1,10 @@
-FROM alpine:3.4
+FROM alpine:3.8
 
-nkdir app
-nkdit app/bin
+WORKDIR /app/bin
 
-ADD target/testng.xml app/bin/testng.xml
+ADD target/SelTest-0.0.1-SANPSHOT.jar SelTest-0.0.1-SANPSHOT.jar
+ADD target/SelTest-0.0.1-SANPSHOT-tests.jar SelTest-0.0.1-SANPSHOT-tests.jar
+ADD target/libs libs
+ADD target/testng.xml testng.xml
 
-ENTRYPOINT java –cp Seltest-0.0.1-SANPSHOt.jar org.testng.TestNG testing.xml
+ENTRYPOINT java –cp SelTest-0.0.1-SANPSHOT.jar:SelTest-0.0.1-SANPSHOT-tests.jar:libs/* org.testng.TestNG testng.xml
